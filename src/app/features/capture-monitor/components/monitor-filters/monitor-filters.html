@@ -1,0 +1,6 @@
+<fieldset [disabled]="disabled()" class="filters">
+  <legend>Filtrar información</legend>
+  <div class="field"><label for="monitor-district">Distrito</label><select id="monitor-district" #district [value]="filters().distritoId ?? ''" (change)="change('distritoId', district.value)"><option value="">Todos los distritos</option>@for (item of catalogs()?.distritos ?? []; track item.id) { <option [value]="item.id">{{ item.nombre }}</option> }</select></div>
+  <div class="field"><label for="monitor-election">Tipo de elección</label><select id="monitor-election" #election [value]="filters().tipoEleccionId ?? ''" (change)="change('tipoEleccionId', election.value)"><option value="">Todas las elecciones</option>@for (item of catalogs()?.elecciones ?? []; track item.id) { <option [value]="item.id">{{ item.nombre }}</option> }</select></div>
+  <button class="button reset" type="button" [disabled]="!filters().distritoId && !filters().tipoEleccionId" (click)="filtersChange.emit({})">Limpiar filtros</button>
+</fieldset>

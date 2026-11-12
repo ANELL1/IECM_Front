@@ -1,0 +1,5 @@
+import { Component, input, output } from '@angular/core';
+@Component({ selector: 'app-pagination', standalone: true, template: '<nav aria-label="Paginación de resultados"><span>Página {{ totalPages() === 0 ? 0 : page() }} de {{ totalPages() }}</span><div><button type="button" class="button" aria-label="Página anterior" [disabled]="disabled() || page() <= 1" (click)="pageChange.emit(page() - 1)">Anterior</button><button type="button" class="button" aria-label="Página siguiente" [disabled]="disabled() || page() >= totalPages()" (click)="pageChange.emit(page() + 1)">Siguiente</button></div></nav>', styles: `nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; } span { color: var(--color-muted); font-size: .75rem; } nav div { display: flex; gap: .5rem; } button { font-size: .75rem; }` })
+export class Pagination {
+  readonly page = input.required<number>(); readonly totalPages = input.required<number>(); readonly disabled = input(false); readonly pageChange = output<number>();
+}

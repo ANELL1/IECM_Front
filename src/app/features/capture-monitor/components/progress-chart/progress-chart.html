@@ -1,0 +1,10 @@
+<figure [attr.aria-label]="title()">
+  <figcaption><h2>{{ title() }}</h2><p>{{ subtitle() }}</p></figcaption>
+  <div class="scale" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+  <ul>@for (row of rows(); track row.id) { <li>
+    <div class="bar-label"><span>{{ row.nombre }}</span><strong>{{ row.porcentaje | number:'1.2-2' }}%</strong></div>
+    <svg viewBox="0 0 100 8" preserveAspectRatio="none" height="12" aria-hidden="true" focusable="false"><rect width="100" height="8" rx="2" fill="#eee9f2"/><rect [attr.width]="row.porcentaje" height="8" rx="2" class="bar" [class]="row.semaforo"/></svg>
+    <p class="counts">{{ row.capturadas | number }} de {{ row.esperadas | number }} actas capturadas</p>
+  </li> } @empty { <li class="no-data">Sin datos para los filtros seleccionados.</li> }</ul>
+  <p class="legend">Avance: <span><i class="rojo" aria-hidden="true"></i>Menor a 50%</span><span><i class="amarillo" aria-hidden="true"></i>50% a menos de 80%</span><span><i class="verde" aria-hidden="true"></i>80% o más</span></p>
+</figure>

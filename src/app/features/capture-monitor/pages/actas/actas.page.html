@@ -1,0 +1,22 @@
+<div class="actas-page">
+  <div class="page-heading"><div><p class="eyebrow">CONSULTA ELECTORAL</p><h1>Consulta de actas</h1><p class="intro">Explora las actas y su estado de captura.</p></div><button class="button" type="button" [disabled]="store.loading()" (click)="store.refresh()">{{ store.loading() ? 'Actualizando…' : 'Actualizar' }}</button></div>
+  <app-monitor-filters [catalogs]="store.catalogs()" [filters]="store.filters()" [disabled]="store.catalogsLoading() || !store.catalogs()" (filtersChange)="store.setFilters($event)" />
+  @if (store.catalogError(); as error) { <app-error-state [message]="'No se pudieron cargar los filtros. ' + error.message" [requestId]="error.requestId" [retryable]="!store.catalogsLoading()" (retry)="store.reloadCatalogs()" /> }
+  <div class="additional-filters">
+    <div class="field"><label for="actas-status">Estado de captura</label><select id="actas-status" #status [value]="store.query().estado ?? ''" (change)="store.setStatus(status.value)"><option value="">Todos los estados</option><option value="Capturada">Capturada</option><option value="Pendiente">Pendiente</option></select></div>
+    <div class="field"><label for="actas-limit">Actas por página</label><select id="actas-limit" #limit [value]="store.query().limite" (change)="store.setLimit(+limit.value)"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></div>
+    <button type="button" class="button clear" [disabled]="!store.query().distritoId && !store.query().tipoEleccionId && !store.query().estado" (click)="store.reset()">Restablecer todos los filtros</button>
+  </div>
+  <p class="date-note">Fechas en la zona horaria de tu navegador.@if (store.receivedAt(); as received) { <span> Consulta recibida: {{ received | date:'dd/MM/yyyy HH:mm:ss' }}.</span> }</p>
+  @if (store.error(); as error) { <app-error-state [message]="(store.stale() ? 'Se conserva la última consulta; los datos pueden estar desactualizados. ' : '') + error.message" [requestId]="error.requestId" [retryable]="!store.loading()" (retry)="store.refresh()" /> }
+  @if (store.loading() && !store.result()) { <app-loading-state message="Consultando actas…" /> }
+  @if (store.result(); as result) {
+    <section class="results" aria-labelledby="actas-results-title" [attr.aria-busy]="store.loading()">
+      <div class="results-heading"><div><h2 id="actas-results-title">Actas del conjunto filtrado</h2><p role="status" aria-live="polite">{{ result.total | number }} actas encontradas</p></div>@if (store.loading()) { <span role="status">Actualizando consulta…</span> }</div>
+      @if (result.items.length) { <app-actas-table [rows]="result.items" /> }
+      @else if (store.outOfRange()) { <div class="empty-wrapper"><app-empty-state title="Esta página ya no tiene actas" description="El número de resultados cambió desde la consulta anterior. Vuelve a la primera página para continuar."><button class="button button-primary" type="button" [disabled]="store.loading()" (click)="store.setPage(1)">Ir a la primera página</button></app-empty-state></div> }
+      @else { <div class="empty-wrapper"><app-empty-state description="No se encontraron actas con estos filtros. Cambia el distrito, la elección o el estado de captura." /></div> }
+      <div class="results-footer"><p>@if (result.items.length) { Mostrando {{ store.range().start | number }}–{{ store.range().end | number }} de {{ result.total | number }} } @else { Sin actas en esta página }</p>@if (!store.outOfRange()) { <app-pagination [page]="result.pagina" [totalPages]="result.totalPaginas" [disabled]="store.loading()" (pageChange)="store.setPage($event)" /> }</div>
+    </section>
+  }
+</div>

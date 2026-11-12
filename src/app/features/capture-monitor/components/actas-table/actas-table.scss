@@ -1,0 +1,8 @@
+ :host { display: block; } .table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: .8rem; white-space: nowrap; }
+th, td { padding: 1rem 1.25rem; border-bottom: 1px solid #eeeaf1; } thead th { background: var(--surface-tint); color: var(--color-muted); font-size: .72rem; font-weight: 600; } tbody tr:hover { background: #f5f0fb; }
+.number { text-align: right; font-variant-numeric: tabular-nums; } .muted { color: var(--color-muted); }
+.status { display: inline-flex; padding: .3rem .7rem; border-radius: 2rem; font-size: .73rem; font-weight: 600; }
+.captured { background: var(--color-success-bg); color: var(--color-success); } .pending { background: var(--color-warning-bg); color: var(--color-warning); }
+
+.status { box-shadow: var(--elevation-1); }

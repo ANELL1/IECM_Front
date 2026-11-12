@@ -1,0 +1,61 @@
+:root {
+  color-scheme: light;
+  --color-brand: #64418a;
+  --color-brand-dark: #30203f;
+  --color-brand-soft: #f2edf8;
+  --color-bg: #eef0f8;
+  --color-surface: #ffffff;
+  --color-text: #292332;
+  --color-muted: #655d70;
+  --color-border: #e4e1eb;
+  --color-focus: #176b93;
+  --color-danger: #a02436;
+  --color-danger-bg: #fff1f2;
+  --color-warning: #795400;
+  --color-warning-bg: #fff4d6;
+  --color-success: #216340;
+  --color-success-bg: #e9f5ed;
+  /* Semáforo */
+  --progress-red: #ef4265;
+  --progress-red-ink: #a51d3a;
+  --progress-red-bg: #ffe4eb;
+  --progress-yellow: #eeac0b;
+  --progress-yellow-ink: #795000;
+  --progress-yellow-bg: #fff0bc;
+  --progress-green: #0bab7c;
+  --progress-green-ink: #096344;
+  --progress-green-bg: #d4f8e9;
+  --radius: 1.25rem;
+  --elevation-1: 0 1px 2px rgb(44 28 65 / 8%), 0 3px 8px rgb(44 28 65 / 5%);
+  --elevation-2: 0 2px 5px rgb(44 28 65 / 7%), 0 8px 24px rgb(44 28 65 / 8%);
+  --elevation-3: 0 4px 10px rgb(44 28 65 / 9%), 0 14px 32px rgb(44 28 65 / 12%);
+  --elevation-sidebar: 4px 0 20px rgb(44 28 65 / 16%);
+  --elevation-inset: inset 0 1px 3px rgb(44 28 65 / 7%);
+  --radius-control: .75rem;
+  --surface-tint: #faf8fd;
+  --shadow: var(--elevation-2);
+}
+
+:root {
+  --glass-surface: linear-gradient(135deg, #ffffff, #f5f1fb);
+  --glass-dark: linear-gradient(160deg, #493359, #30213f);
+  --glass-border: #d8d3e6;
+  --glass-blur: none;
+  --glass-shadow: inset 0 1px 0 rgb(255 255 255 / 90%), inset 0 -1px 0 rgb(255 255 255 / 35%), 0 8px 28px rgb(55 36 85 / 9%);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-surface: linear-gradient(135deg, rgb(255 255 255 / 87%), rgb(249 246 255 / 72%));
+    --glass-dark: linear-gradient(160deg, rgb(72 48 94 / 94%), rgb(40 29 58 / 96%));
+    --glass-border: rgb(255 255 255 / 80%);
+    --glass-blur: blur(18px) saturate(125%);
+  }
+}
+@media (prefers-reduced-transparency: reduce), (forced-colors: active), print {
+  :root {
+    --glass-surface: var(--color-surface);
+    --glass-dark: var(--color-brand-dark);
+    --glass-border: var(--color-border);
+    --glass-blur: none;
+  }
+}

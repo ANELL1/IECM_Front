@@ -1,0 +1,5 @@
+<div class="table-scroll" role="region" aria-label="Actas, tabla desplazable" tabindex="0"><table>
+  <caption class="sr-only">Actas individuales de la página consultada, ordenadas por distrito, elección y número de acta. Las fechas se muestran en la zona horaria del navegador.</caption>
+  <thead><tr><th scope="col">Distrito</th><th scope="col">Tipo de elección</th><th scope="col" class="number">Número de acta</th><th scope="col">Estado</th><th scope="col">Fecha de captura</th></tr></thead>
+  <tbody>@for (acta of rows(); track acta.actaId) { <tr><td>{{ acta.distrito }}</td><td>{{ acta.tipoEleccion }}</td><th scope="row" class="number">{{ acta.numeroActa | number:'1.0-0' }}</th><td><span class="status" [class.captured]="acta.estado === 'Capturada'" [class.pending]="acta.estado === 'Pendiente'">{{ acta.estado }}</span></td><td>@if (acta.fechaCaptura) { <time [attr.datetime]="acta.fechaCaptura">{{ acta.fechaCaptura | date:'dd/MM/yyyy HH:mm:ss' }}</time> } @else { <span class="muted">Sin captura</span> }</td></tr> }</tbody>
+</table></div>

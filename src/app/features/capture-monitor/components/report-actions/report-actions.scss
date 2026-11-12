@@ -1,0 +1,15 @@
+@use '../../../../../styles/_glass' as glass;
+ :host { display: block; } .reports { padding: 1.25rem 1.5rem; background: linear-gradient(120deg, var(--color-surface), var(--surface-tint)); border: 1px solid var(--color-border); border-radius: var(--radius); }
+.report-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; } h2 { font-size: 1rem; margin-bottom: .35rem; } p { margin: 0; } .report-bar p { font-size: .78rem; color: var(--color-muted); }
+.actions { display: flex; gap: .65rem; flex-wrap: wrap; } button { font-size: .8rem; } .scope { color: var(--color-muted); font-size: .7rem; margin-top: .85rem; }
+.feedback, .success, .error { margin-top: 1rem; padding: 1rem; border-radius: .5rem; font-size: .8rem; overflow-wrap: anywhere; }
+.feedback { color: var(--color-brand); background: var(--color-brand-soft); }
+.success { color: var(--color-success); background: var(--color-success-bg); } .success p { margin-top: .35rem; }
+.error { background: var(--color-danger-bg); color: var(--color-danger); } .error small { display: block; margin-top: .35rem; } .error button { margin-top: .75rem; }
+@media (max-width: 550px) { .reports { padding: 1rem; } .actions { width: 100%; } .actions button { flex: 1; } }
+
+.reports { box-shadow: var(--elevation-2); }
+
+.feedback, .success, .error { box-shadow: var(--elevation-1); }
+
+.reports { @include glass.surface; }

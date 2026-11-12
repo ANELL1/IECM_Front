@@ -1,0 +1,26 @@
+ :host { display: block; height: 100%; }
+.sidebar-content { display: flex; flex-direction: column; min-height: 100%; padding: 2rem 1.25rem 1.25rem; color: #e9e2ef; }
+.brand { display: flex; align-items: center; gap: .75rem; padding: 0 .5rem; margin-bottom: 3rem; color: white; text-decoration: none; }
+.brand-mark { width: 46px; height: 46px; display: grid; place-items: center; background: linear-gradient(135deg, #ffffff28, #ffffff0d); border: 1px solid #ffffff30; border-radius: .75rem; }
+.brand strong { display: block; font-size: 1.4rem; letter-spacing: .09em; line-height: 1.3; }
+.brand small { display: block; color: #d7cae5; font-size: .72rem; }
+.nav-label { font-size: .62rem; letter-spacing: .13em; margin: 0 .75rem .75rem; color: #c3b5d1; }
+nav { display: grid; gap: .4rem; }
+nav a { display: flex; align-items: center; gap: .8rem; min-height: 48px; padding: .7rem .9rem; border-radius: .85rem; border: 1px solid transparent; color: #ece5f3; text-decoration: none; font-size: .85rem; font-weight: 500; }
+nav a:hover { background: #ffffff0d; }
+nav a.active { background: #f4eefb; border-color: #f4eefb; color: #44265f; font-weight: 650; }
+a:focus-visible { outline-color: #e3bf72; }
+.sidebar-note { margin: auto .4rem 0; padding-top: 4rem; }
+.note-label { font-size: .62rem; letter-spacing: .13em; color: #c3b5d1; }
+.sidebar-note p { font-size: .8rem; margin: .65rem 0 1rem; line-height: 1.7; }
+.read-only { font-size: .7rem; border: 1px solid #ffffff30; padding: .35rem .65rem; border-radius: .35rem; }
+.sidebar-footer { margin: 2rem .4rem 0; padding-top: 1.25rem; border-top: 1px solid #ffffff20; color: #c3b5d1; font-size: .68rem; line-height: 1.6; }
+@media (max-width: 767px) { .sidebar-content { padding: 1.25rem 1rem; } .brand { margin-bottom: 1.5rem; } .sidebar-note, .sidebar-footer { display: none; } }
+
+.brand-mark, .read-only { box-shadow: var(--elevation-1); }
+nav a { transition: box-shadow 160ms ease, background-color 160ms ease; }
+nav a:hover, nav a.active { box-shadow: var(--elevation-1); }
+@media (prefers-reduced-motion: reduce) { nav a { transition: none; } }
+
+nav a.active { background: linear-gradient(135deg, #f8f3ff, #dfd5ef); border-color: #ffffffb3; box-shadow: inset 0 1px 0 #fff, 0 4px 16px #160c2326; }
+.brand-mark { box-shadow: inset 0 1px 0 #ffffff45, var(--elevation-1); }

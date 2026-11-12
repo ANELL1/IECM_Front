@@ -1,0 +1,20 @@
+<div class="dashboard">
+  <div class="page-heading"><div><p class="eyebrow">SEGUIMIENTO ELECTORAL</p><h1>Monitor de avance de captura</h1><p class="intro">Consulta el avance de actas por distrito y tipo de elección.</p></div><button type="button" class="button" [disabled]="store.loading()" (click)="store.refresh()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-1l2 3M4 15l2 3a7 7 0 0 0 12-1"/></svg>{{ store.loading() ? 'Actualizando…' : 'Actualizar' }}</button></div>
+  <app-monitor-filters [catalogs]="store.catalogs()" [filters]="store.filters()" [disabled]="store.catalogsLoading() || !store.catalogs()" (filtersChange)="store.applyFilters($event)" />
+  @if (store.catalogError(); as error) { <app-error-state [message]="'No se pudieron cargar los filtros. ' + error.message" [requestId]="error.requestId" [retryable]="!store.catalogsLoading()" (retry)="store.reloadCatalogs()" /> }
+  <div class="update-line"><span>Actualización automática cada {{ store.intervalMs / 1000 | number:'1.0-2' }} s</span><span role="status" aria-live="polite">@if (store.loading()) { Consultando información… } @else if (store.snapshot(); as snapshot) { Último corte: {{ snapshot.generadoEn | date:'dd/MM/yyyy HH:mm:ss' }} } @else { Aún no hay un corte disponible }</span></div>
+  @if (store.error(); as error) { <app-error-state [message]="(store.stale() ? 'Datos desactualizados: se conserva el último corte exitoso. ' : '') + error.message" [requestId]="error.requestId" [retryable]="!store.loading()" (retry)="store.refresh()" /> }
+  @if (store.snapshot(); as snapshot) {
+    <div class="applied"><span>{{ snapshot.filtros.distrito }} · {{ snapshot.filtros.tipoEleccion }}</span>@if (store.stale()) { <strong>Datos desactualizados</strong> }</div>
+    <section class="metrics" aria-label="Indicadores de captura" [attr.aria-busy]="store.loading()">
+      <app-metric-card label="Actas esperadas" [value]="snapshot.resumen.esperadas" description="Actas existentes en el conjunto" />
+      <app-metric-card label="Actas capturadas" [value]="snapshot.resumen.capturadas" description="Con estado Capturada" tone="captured" />
+      <app-metric-card label="Actas pendientes" [value]="snapshot.resumen.pendientes" description="Por capturar" tone="pending" />
+      <app-metric-card label="Avance global" [value]="snapshot.resumen.porcentaje" [percentage]="true" [description]="snapshot.resumen.esperadas ? 'Calculado sobre el total de actas' : 'Sin datos'" tone="progress" />
+    </section>
+    @if (!snapshot.resumen.esperadas) { <app-empty-state description="No existen actas para los filtros seleccionados. Puedes cambiar el distrito o el tipo de elección." /> }
+    <section class="charts" aria-label="Gráficas de avance"><app-progress-chart class="districts" title="Avance por distrito" subtitle="Porcentaje de actas capturadas" [rows]="snapshot.distritos" /><app-capture-donut [metrics]="snapshot.resumen" /><app-progress-chart class="elections" title="Avance por tipo de elección" subtitle="Porcentaje de actas capturadas en el conjunto filtrado" [rows]="snapshot.elecciones" /></section>
+    <app-report-actions [snapshot]="snapshot" [disabled]="store.loading()" (refresh)="store.refresh()" />
+    <app-progress-table [rows]="snapshot.detalle" [totals]="snapshot.resumen" />
+  } @else if (store.loading()) { <app-loading-state message="Consultando el avance de captura…" /> }
+</div>

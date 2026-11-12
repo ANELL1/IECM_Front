@@ -1,0 +1,23 @@
+@use '../../../../../styles/_glass' as glass;
+ :host { display: block; min-width: 0; }
+.metric { height: 100%; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.4rem; border-top: 3px solid #b8aac9; box-shadow: var(--shadow); }
+.label { display: flex; justify-content: space-between; align-items: center; gap: .4rem; font-size: .8rem; font-weight: 600; color: var(--color-muted); }
+.marker { flex-shrink: 0; width: 9px; height: 9px; border-radius: 3px; background: #a49aae; }
+.value { font-size: clamp(1.8rem, 2.8vw, 2.5rem); font-weight: 700; letter-spacing: -.045em; margin: .75rem 0 .2rem; font-variant-numeric: tabular-nums; }
+.percent { font-size: 1.1rem; margin-left: .2rem; font-weight: 500; }
+.description { color: var(--color-muted); font-size: .72rem; margin: 0; }
+.captured .marker { background: var(--color-success); } .pending .marker { background: #ae7909; }
+.progress { background: linear-gradient(135deg, #6a4694, #44275f); border-color: var(--color-brand); color: white; }
+.progress .label, .progress .description { color: #eee5f6; } .progress .marker { background: #d8c2ed; }
+
+.progress { box-shadow: var(--elevation-3); }
+
+.captured { border-top-color: #408465; }
+.pending { border-top-color: #bd8c30; }
+.progress { border-top-color: #b49bcd; }
+
+.metric:not(.progress) { @include glass.surface; }
+
+.metric.captured { border-top-color: #74a18c; }
+.metric.pending { border-top-color: #c9aa70; }
+.progress { background: radial-gradient(ellipse at top left, #815bab, transparent 70%), linear-gradient(135deg, #654087, #40275b); box-shadow: inset 0 1px 0 #ffffff55, var(--elevation-3); border-color: #a98bc5; }

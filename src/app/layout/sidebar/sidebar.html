@@ -1,0 +1,19 @@
+<div class="sidebar-content">
+  <a class="brand" routerLink="/dashboard" aria-label="IECM, ir al monitor" (click)="navigate.emit()">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 4 12 7v14l-12 7-12-7V11Z"/><path d="m11 18 5 5 10-11"/></svg></span>
+    <span><strong>IECM</strong><small>Monitor de captura</small></span>
+  </a>
+  <p class="nav-label">CONSULTA ELECTORAL</p>
+  <nav aria-label="Navegación principal">
+    <a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="navigate.emit()">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+      Avance de captura
+    </a>
+    <a routerLink="/actas" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="navigate.emit()">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/></svg>
+      Consulta de actas
+    </a>
+  </nav>
+  <div class="sidebar-note"><span class="note-label">PRUEBA TÉCNICA</span><p>Seguimiento de actas por distrito y tipo de elección.</p><span class="read-only">Consulta de información</span></div>
+  <p class="sidebar-footer">Instituto Electoral<br>de la Ciudad de México</p>
+</div>

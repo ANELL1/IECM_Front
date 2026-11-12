@@ -1,0 +1,9 @@
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+<div class="shell">
+  <app-header [title]="pageTitle()" [navigationOpen]="navigationOpen()" (toggleNavigation)="toggleNavigation()" />
+  <aside id="institutional-sidebar" class="sidebar" [class.mobile-open]="navigationOpen()" aria-label="Menú institucional"><app-sidebar (navigate)="navigate()" /></aside>
+  <div class="workspace">
+    <main #mainContent id="main-content" tabindex="-1"><router-outlet /></main>
+    <footer class="footer"><span>IECM · Monitor de avance de captura</span><span>Información ficticia para evaluación técnica</span></footer>
+  </div>
+</div>

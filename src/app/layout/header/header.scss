@@ -1,0 +1,17 @@
+@use '../../../styles/_glass' as glass;
+ :host { display: block; }
+.header { min-height: 80px; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.heading { display: flex; align-items: center; gap: .8rem; min-width: 0; }
+.eyebrow { margin: 0 0 .15rem; font-size: .65rem; letter-spacing: .14em; font-weight: 700; color: var(--color-muted); }
+.title { margin: 0; font-weight: 600; font-size: 1rem; }
+.test-label { display: inline-flex; align-items: center; gap: .5rem; font-size: .75rem; color: var(--color-muted); }
+.dot { width: .4rem; height: .4rem; border-radius: 50%; background: var(--color-brand); }
+.menu-button { display: none; width: 44px; height: 44px; padding: .6rem; background: white; border: 1px solid var(--color-border); border-radius: .5rem; color: var(--color-brand); }
+@media (max-width: 767px) { .header { padding: 1rem; min-height: 80px; flex-wrap: wrap; } .menu-button { display: inline-flex; align-items: center; justify-content: center; } .test-label { margin-left: auto; } }
+
+:host { position: relative; z-index: 1; }
+.header { box-shadow: var(--elevation-1); }
+
+.test-label { padding: .4rem .75rem; border: 1px solid var(--color-border); border-radius: 2rem; background: var(--surface-tint); }
+
+.header { @include glass.surface; }

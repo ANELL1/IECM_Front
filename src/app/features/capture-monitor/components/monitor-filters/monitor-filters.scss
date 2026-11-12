@@ -1,0 +1,12 @@
+@use '../../../../../styles/_glass' as glass;
+ :host { display: block; }
+.filters { margin: 0; border: 1px solid var(--color-border); background: var(--color-surface); border-radius: var(--radius); padding: 1.25rem 1.5rem; display: flex; align-items: end; gap: 1.25rem; }
+legend { font-size: .75rem; padding: 0 .4rem; color: var(--color-muted); font-weight: 600; }
+.field { flex: 1; min-width: 0; } label { display: block; margin-bottom: .4rem; font-size: .8rem; font-weight: 600; }
+select { width: 100%; min-height: 44px; padding: .6rem 2rem .6rem .75rem; background: white; color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-control); }
+select:disabled { opacity: .6; } .reset { font-size: .8rem; }
+@media (max-width: 650px) { .filters { flex-direction: column; align-items: stretch; padding: 1rem; gap: 1rem; } }
+
+.filters { box-shadow: var(--elevation-2); }
+
+.filters { @include glass.surface; }

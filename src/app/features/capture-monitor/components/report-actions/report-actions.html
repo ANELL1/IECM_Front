@@ -1,0 +1,10 @@
+<section class="reports" aria-labelledby="reports-title" [attr.aria-busy]="busy() !== null">
+  <div class="report-bar"><div><h2 id="reports-title">Exportar avance</h2><p>Incluye los filtros, el detalle completo y los totales del panel.</p></div><div class="actions">
+    <button type="button" class="button" [disabled]="blocked()" (click)="download('xlsx')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg>{{ busy() === 'xlsx' ? 'Preparando Excel…' : 'Descargar Excel' }}</button>
+    <button type="button" class="button button-primary" [disabled]="blocked()" (click)="download('pdf')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg>{{ busy() === 'pdf' ? 'Preparando PDF…' : 'Descargar PDF' }}</button>
+  </div></div>
+  <p class="scope">Corte disponible: {{ snapshot().generadoEn | date:'dd/MM/yyyy HH:mm:ss' }}. La búsqueda y la página de la tabla no limitan el reporte.</p>
+  @if (busy()) { <p class="feedback" role="status">Preparando el archivo solicitado. La descarga iniciará cuando esté listo.</p> }
+  @if (error(); as failure) { <div class="error"><div role="alert"><p>{{ errorMessage() }}</p>@if (failure.requestId) { <small>Referencia: {{ failure.requestId }}</small> }</div>@if (expired()) { <button type="button" class="button" [disabled]="disabled()" (click)="refresh.emit()">Actualizar panel</button> } @else { <button type="button" class="button" [disabled]="blocked()" (click)="retry()">Reintentar descarga</button> }</div> }
+  @if (success(); as result) { <div class="success" role="status"><strong>Descarga iniciada: {{ result.filename }}</strong><p>Corte {{ result.generadoEn | date:'dd/MM/yyyy HH:mm:ss' }} · {{ result.distrito }} · {{ result.tipoEleccion }}.</p><p>Revisa las descargas de tu navegador.</p></div> }
+</section>

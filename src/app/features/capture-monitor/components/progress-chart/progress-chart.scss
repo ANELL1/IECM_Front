@@ -1,0 +1,25 @@
+@use '../../../../../styles/_glass' as glass;
+ :host { display: block; height: 100%; }
+figure { margin: 0; padding: 1.5rem; height: 100%; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-surface); }
+h2 { font-size: 1rem; margin-bottom: .3rem; } figcaption p { color: var(--color-muted); font-size: .78rem; }
+.scale { display: flex; justify-content: space-between; margin: 1.25rem 0 .75rem; color: var(--color-muted); font-size: .65rem; }
+ul { list-style: none; padding: 0; margin: 0; } li { margin-bottom: 1rem; }
+.bar-label { display: flex; justify-content: space-between; gap: 1rem; font-size: .8rem; margin-bottom: .25rem; }
+strong { font-variant-numeric: tabular-nums; white-space: nowrap; } svg { display: block; width: 100%; }
+.bar { fill: var(--color-brand); } .bar.rojo { fill: var(--progress-red); } .bar.amarillo { fill: var(--progress-yellow); } .bar.verde { fill: var(--progress-green); }
+.counts { font-size: .7rem; color: var(--color-muted); margin: .25rem 0 0; }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem .75rem; padding-top: .8rem; border-top: 1px solid var(--color-border); color: var(--color-muted); font-size: .65rem; margin-bottom: 0; }
+.legend span { display: inline-flex; align-items: center; gap: .25rem; } i { width: 9px; height: 9px; border-radius: 50%; } i.rojo { background: var(--progress-red); } i.amarillo { background: var(--progress-yellow); } i.verde { background: var(--progress-green); }
+.no-data { color: var(--color-muted); font-size: .85rem; padding: 2rem 0; }
+
+figure { box-shadow: var(--elevation-2); }
+
+figure { @include glass.surface; }
+
+.bar { stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.bar.rojo { stroke: var(--progress-red-ink); }
+.bar.amarillo { stroke: var(--progress-yellow-ink); }
+.bar.verde { stroke: var(--progress-green-ink); }
+i.rojo { box-shadow: 0 0 0 2px var(--progress-red-bg); }
+i.amarillo { box-shadow: 0 0 0 2px var(--progress-yellow-bg); }
+i.verde { box-shadow: 0 0 0 2px var(--progress-green-bg); }
